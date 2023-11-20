@@ -10,9 +10,6 @@ const InitialPhase: Phase = {
   currSet: 1,
 };
 
-const StartAudio = new Audio("/runPhaseStarting.mp3");
-const EndAudio = new Audio("/runPhaseEnding.mp3");
-
 export const useSession = ({ session }: { session: Session }) => {
   const [phase, setPhase] = useState<Phase>(InitialPhase);
   const { timeElapsed, play, pause, reset, isPaused } = useTimer();
@@ -27,6 +24,7 @@ export const useSession = ({ session }: { session: Session }) => {
       phaseTarget - timeElapsed === 10 &&
       phase.mainPhase === MAIN_PHASE.RUN
     ) {
+      const EndAudio = new Audio("/runPhaseEnding.mp3");
       EndAudio.play();
     }
     if (
@@ -35,6 +33,7 @@ export const useSession = ({ session }: { session: Session }) => {
         phase.mainPhase === MAIN_PHASE.REST) ||
         phase.sessionPhase === SESSION_PHASE.WARM_UP)
     ) {
+      const StartAudio = new Audio("/runPhaseStarting.mp3");
       StartAudio.play();
     }
     if (timeElapsed == phaseTarget) {
