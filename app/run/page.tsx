@@ -7,11 +7,11 @@ import Progress from "./_components/Progress";
 import Controls from "./_components/Controls";
 
 const MOCK_SESSION: Session = {
-  warmDownDuration: 30,
-  warmUpDuration: 30,
-  sets: 2,
-  mainRunDuration: 60,
-  mainRestDuration: 60,
+  warmDownDuration: 300,
+  warmUpDuration: 300,
+  sets: 5,
+  mainRunDuration: 120,
+  mainRestDuration: 120,
 };
 
 const RunPage = () => {
