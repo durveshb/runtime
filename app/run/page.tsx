@@ -14,7 +14,7 @@ const MOCK_SESSION: Session = {
   mainRestDuration: 60,
 };
 
-const page = () => {
+const RunPage = () => {
   const { phase, timeElapsed, phaseTarget, play, pause, isPaused } = useSession(
     {
       session: MOCK_SESSION,
@@ -33,4 +33,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RunPage;

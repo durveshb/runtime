@@ -45,7 +45,7 @@ export const useSession = ({ session }: { session: Session }) => {
       reset();
       setPhase(nextPhase);
     }
-  }, [timeElapsed, phase, phaseTarget]);
+  }, [timeElapsed, phase, phaseTarget, pause, reset, session]);
 
   return { phase, timeElapsed, play, pause, phaseTarget, isPaused };
 };
