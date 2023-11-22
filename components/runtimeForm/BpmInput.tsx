@@ -20,7 +20,7 @@ const BpmInput = ({
         updatedLevel: BPM_OPTIONS[currentLevel + 1],
       });
     }
-  }, [updateLevel]);
+  }, [updateLevel, currentLevel, maxLevels]);
 
   const decrement = useCallback(() => {
     if (currentLevel > 0) {
@@ -28,7 +28,7 @@ const BpmInput = ({
         updatedLevel: BPM_OPTIONS[currentLevel - 1],
       });
     }
-  }, [updateLevel]);
+  }, [updateLevel, currentLevel]);
 
   return (
     <CounterWithButtons

@@ -70,6 +70,7 @@ const CompoundPhaseInput = ({
       <RepeaterInput repeater={repeater} updateRepeater={updateRepeater} />
       {phases.map((phase) => (
         <PhaseInput
+          key={phase.id}
           phase={phase}
           updatePhase={updateIndividualPhase}
           deletePhase={onDeleteSubPhase}

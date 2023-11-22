@@ -22,7 +22,7 @@ const RepeaterInput = ({
         updatedRepeater: repeater - 1,
       });
     }
-  }, [repeater]);
+  }, [updateRepeater, repeater]);
 
   return (
     <div className="w-full px-3">

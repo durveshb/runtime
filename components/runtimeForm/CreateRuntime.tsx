@@ -19,6 +19,7 @@ const CreateRuntime = () => {
       {runtime.map((phase) =>
         (phase as CompoundPhaseWithId).repeater ? (
           <CompoundPhaseInput
+            key={phase.id}
             phase={phase as CompoundPhaseWithId}
             updatePhase={updatePhase}
             addSubPhase={addSubPhase}
@@ -26,6 +27,7 @@ const CreateRuntime = () => {
           />
         ) : (
           <PhaseInput
+            key={phase.id}
             phase={phase as PhaseWithId}
             updatePhase={updatePhase}
             deletePhase={deletePhase}
