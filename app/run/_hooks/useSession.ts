@@ -25,7 +25,16 @@ export const useSession = ({ session }: { session: Runtime }) => {
     bpm: phaseSequence[phase].level,
   });
 
+  const startingNextPhase = useMemo(
+    () => new Audio("/startingNextPhase.mp3"),
+    []
+  );
+
   useEffect(() => {
+    if (phaseTarget - timeElapsed === 5) {
+      startingNextPhase.volume = 1;
+      startingNextPhase.play();
+    }
     if (timeElapsed == phaseTarget) {
       if (phase === totalPhases - 1) {
         setIsComplete(true);
@@ -54,6 +63,8 @@ export const useSession = ({ session }: { session: Runtime }) => {
   const play = useCallback(() => {
     playMetronome();
     playTimer();
+    startingNextPhase.volume = 0;
+    startingNextPhase.play();
   }, [playMetronome, playTimer]);
 
   return {
