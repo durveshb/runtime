@@ -6,6 +6,7 @@ import PhaseInput from "./PhaseInput";
 import { CompoundPhaseWithId, PhaseWithId } from "@/lib/types";
 import { useCreateRuntime } from "./hooks/useCreateRuntime";
 import NewPhaseButton from "./NewPhaseButton";
+import StartRunButton from "./StartRunButton";
 
 const CreateRuntime = () => {
   const { runtime, updatePhase, addSubPhase, deletePhase } = useCreateRuntime();
@@ -32,6 +33,7 @@ const CreateRuntime = () => {
         )
       )}
       <NewPhaseButton addNewPhase={addSubPhase} />
+      <StartRunButton runtimeBlocks={runtime} />
     </div>
   );
 };

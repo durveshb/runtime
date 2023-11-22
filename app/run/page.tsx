@@ -1,57 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { useSession } from "./_hooks/useSession";
 import Progress from "./_components/Progress";
 import Controls from "./_components/Controls";
 import { Runtime } from "@/lib/types";
 import { BPM } from "@/lib/constants";
+import RunTimer from "./_components/RunTimer";
+import BackButton from "./_components/BackButton";
 
-const MOCK_SESSION: Runtime = {
-  name: "Mock Session",
-  blocks: [
-    { level: BPM.LEVEL_3, duration: 300 },
-    {
-      phases: [
-        { level: BPM.LEVEL_5, duration: 300 },
-        { level: BPM.LEVEL_3, duration: 180 },
-      ],
-      repeater: 3,
-    },
-    {
-      phases: [
-        { level: BPM.LEVEL_6, duration: 120 },
-        { level: BPM.LEVEL_3, duration: 120 },
-      ],
-      repeater: 2,
-    },
-  ],
-};
-
-const RunPage = () => {
-  const {
-    phase,
-    totalPhases,
-    timeElapsed,
-    phaseTarget,
-    play,
-    pause,
-    isPaused,
-    isComplete,
-  } = useSession({
-    session: MOCK_SESSION,
-  });
-  return (
-    <div className="flex flex-col gap-5 items-center justify-center">
-      <Progress
-        phase={phase}
-        totalSet={totalPhases}
-        totalTime={phaseTarget}
-        currentTime={timeElapsed}
-      />
-      <Controls isPaused={isPaused} play={play} pause={pause} />
-    </div>
-  );
+const RunPage = ({
+  searchParams: { runtime },
+}: {
+  searchParams: { runtime: string };
+}) => {
+  const parsedRuntime = useMemo(() => JSON.parse(runtime), [runtime]);
+  if (runtime) {
+    return (
+      <div className="min-h-screen relative flex items-center justify-center">
+        <BackButton />
+        <RunTimer runtime={parsedRuntime} />
+      </div>
+    );
+  }
+  return <div className="flex items-center justify-between">No run found</div>;
 };
 
 export default RunPage;

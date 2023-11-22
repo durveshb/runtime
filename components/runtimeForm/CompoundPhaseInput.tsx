@@ -65,7 +65,7 @@ const CompoundPhaseInput = ({
     <div className="relative w-full flex justify-between flex-col items-center p-3 border border-foreground/30 rounded gap-y-2 group/compound">
       <DeleteButton
         onClick={onDeletePhase}
-        className="absolute p-3 hidden group-hover/compound:block -right-4 -top-4"
+        className="absolute p-3 sm:hidden group-hover/compound:block -right-4 -top-4"
       />
       <RepeaterInput repeater={repeater} updateRepeater={updateRepeater} />
       {phases.map((phase) => (

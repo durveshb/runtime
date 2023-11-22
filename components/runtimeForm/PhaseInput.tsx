@@ -6,8 +6,6 @@ import BpmInput from "./BpmInput";
 import DurationInput from "./DurationInput";
 import { BPM } from "@/lib/constants";
 import { ClassNameValue } from "tailwind-merge";
-import { Trash2 } from "lucide-react";
-import { Button } from "../ui/button";
 import DeleteButton from "./DeleteButton";
 
 const PhaseInput = ({
@@ -57,7 +55,7 @@ const PhaseInput = ({
     >
       <DeleteButton
         onClick={onDeletePhase}
-        className="absolute p-3 hidden group-hover:block -right-6 -top-6"
+        className="absolute p-3 sm:hidden group-hover:block -right-6 -top-6"
       />
       <BpmInput level={level} updateLevel={updateLevel} />
       <DurationInput duration={duration} updateDuration={updateDuration} />

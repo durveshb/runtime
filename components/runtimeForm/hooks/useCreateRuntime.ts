@@ -4,7 +4,7 @@ import { BPM } from "@/lib/constants";
 import { CompoundPhaseWithId, PhaseWithId } from "@/lib/types";
 import { useCallback, useState } from "react";
 
-const InitialState = [{ id: uuidv4(), level: BPM.LEVEL_10, duration: 30 }] as (
+const InitialState = [{ id: uuidv4(), level: BPM.LEVEL_1, duration: 30 }] as (
   | PhaseWithId
   | CompoundPhaseWithId
 )[];
