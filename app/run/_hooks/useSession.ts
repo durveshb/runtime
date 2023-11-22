@@ -1,12 +1,19 @@
+import { useMetronome } from "@/hooks/useMetronome";
 import { useTimer } from "@/hooks/useTimer";
 import { Runtime } from "@/lib/types";
 import { getPhaseSequence } from "@/lib/utils/session";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const useSession = ({ session }: { session: Runtime }) => {
   const [phase, setPhase] = useState<number>(0);
   const [isComplete, setIsComplete] = useState<boolean>(false);
-  const { timeElapsed, play, pause, reset, isPaused } = useTimer();
+  const {
+    timeElapsed,
+    play: playTimer,
+    pause: pauseTimer,
+    reset,
+    isPaused,
+  } = useTimer();
 
   const phaseSequence = useMemo(() => {
     return getPhaseSequence({ session });
@@ -14,17 +21,40 @@ export const useSession = ({ session }: { session: Runtime }) => {
   const phaseTarget = phaseSequence[phase].duration;
   const totalPhases = phaseSequence.length;
 
+  const { play: playMetronome, pause: pauseMetronome } = useMetronome({
+    bpm: phaseSequence[phase].level,
+  });
+
   useEffect(() => {
     if (timeElapsed == phaseTarget) {
       if (phase === totalPhases - 1) {
         setIsComplete(true);
-        pause();
+        pauseTimer();
+        pauseMetronome();
       } else {
         setPhase((prev) => prev + 1);
         reset();
       }
     }
-  }, [timeElapsed, phase, phaseTarget, totalPhases, pause, reset]);
+  }, [
+    timeElapsed,
+    phase,
+    phaseTarget,
+    totalPhases,
+    pauseTimer,
+    pauseMetronome,
+    reset,
+  ]);
+
+  const pause = useCallback(() => {
+    pauseMetronome();
+    pauseTimer();
+  }, [pauseMetronome, pauseTimer]);
+
+  const play = useCallback(() => {
+    playMetronome();
+    playTimer();
+  }, [playMetronome, playTimer]);
 
   return {
     phase: {
