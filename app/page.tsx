@@ -1,5 +1,9 @@
+import CreateRuntime from "../components/runtimeForm/CreateRuntime";
+
 export default function Home() {
   return (
-    <div className="h-screen flex items-center justify-center">Runtime</div>
+    <div className="w-full min-h-screen py-6">
+      <CreateRuntime />
+    </div>
   );
 }

@@ -10,18 +10,18 @@ import { BPM } from "@/lib/constants";
 const MOCK_SESSION: Runtime = {
   name: "Mock Session",
   blocks: [
-    { speed: BPM.LEVEL_3, duration: 300 },
+    { level: BPM.LEVEL_3, duration: 300 },
     {
       phases: [
-        { speed: BPM.LEVEL_5, duration: 300 },
-        { speed: BPM.LEVEL_3, duration: 180 },
+        { level: BPM.LEVEL_5, duration: 300 },
+        { level: BPM.LEVEL_3, duration: 180 },
       ],
       repeater: 3,
     },
     {
       phases: [
-        { speed: BPM.LEVEL_6, duration: 120 },
-        { speed: BPM.LEVEL_3, duration: 120 },
+        { level: BPM.LEVEL_6, duration: 120 },
+        { level: BPM.LEVEL_3, duration: 120 },
       ],
       repeater: 2,
     },

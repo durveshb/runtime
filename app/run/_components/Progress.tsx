@@ -9,7 +9,7 @@ const Progress = ({
   currentTime,
 }: {
   phase: {
-    speed: BPM;
+    level: BPM;
     count: number;
   };
   totalSet: number;
@@ -29,7 +29,7 @@ const Progress = ({
       <ProgressBar radius={150} progress={progressPercentage}>
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="text-xs uppercase font-semibold text-foreground/60">
-            {`${phase.speed} BPM`}
+            {`${phase.level} BPM`}
           </p>
           <h1 className="text-5xl font-bold text-foreground/80">
             {progressLabel}

@@ -1,20 +1,20 @@
-import { CompoundBlock, PhaseBlock, Runtime } from "../types";
+import { CompoundPhase, Phase, Runtime } from "../types";
 
 export const getPhaseSequence = ({
   session,
 }: {
   session: Runtime;
-}): PhaseBlock[] => {
+}): Phase[] => {
   const { blocks } = session;
   return blocks.reduce((acc, block) => {
-    if ((block as CompoundBlock).phases) {
-      const blockPhases = (block as CompoundBlock).phases;
-      for (let i = 0; i < (block as CompoundBlock).repeater; i++) {
+    if ((block as CompoundPhase).phases) {
+      const blockPhases = (block as CompoundPhase).phases;
+      for (let i = 0; i < (block as CompoundPhase).repeater; i++) {
         acc = [...acc, ...blockPhases];
       }
       return [...acc];
     } else {
-      return [...acc, block as PhaseBlock];
+      return [...acc, block as Phase];
     }
-  }, [] as unknown as PhaseBlock[]);
+  }, [] as unknown as Phase[]);
 };

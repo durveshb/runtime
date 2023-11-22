@@ -10,3 +10,16 @@ export enum BPM {
   LEVEL_9 = 180,
   LEVEL_10 = 190,
 }
+
+export const BPM_OPTIONS = [
+  BPM.LEVEL_1,
+  BPM.LEVEL_2,
+  BPM.LEVEL_3,
+  BPM.LEVEL_4,
+  BPM.LEVEL_5,
+  BPM.LEVEL_6,
+  BPM.LEVEL_7,
+  BPM.LEVEL_8,
+  BPM.LEVEL_9,
+  BPM.LEVEL_10,
+];

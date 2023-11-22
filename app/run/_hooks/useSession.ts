@@ -28,7 +28,7 @@ export const useSession = ({ session }: { session: Runtime }) => {
 
   return {
     phase: {
-      speed: phaseSequence[phase].speed,
+      level: phaseSequence[phase].level,
       count: phase + 1,
     },
     totalPhases,
