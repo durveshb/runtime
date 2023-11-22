@@ -1,50 +1,42 @@
 import { useTimer } from "@/hooks/useTimer";
-import { MAIN_PHASE, SESSION_PHASE } from "@/lib/constants";
-import { getNextPhase, getPhaseTarget } from "@/lib/session";
-import { Phase, Session } from "@/lib/types/session";
+import { Session } from "@/lib/types";
+import { getPhaseSequence } from "@/lib/utils/session";
 import { useEffect, useMemo, useState } from "react";
 
-const InitialPhase: Phase = {
-  sessionPhase: SESSION_PHASE.WARM_UP,
-  mainPhase: MAIN_PHASE.RUN,
-  currSet: 1,
-};
-
 export const useSession = ({ session }: { session: Session }) => {
-  const [phase, setPhase] = useState<Phase>(InitialPhase);
+  const [phase, setPhase] = useState<number>(0);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
   const { timeElapsed, play, pause, reset, isPaused } = useTimer();
 
-  const phaseTarget = useMemo(() => {
-    return getPhaseTarget({ phase, session });
-  }, [phase, session]);
+  const phaseSequence = useMemo(() => {
+    return getPhaseSequence({ session });
+  }, [session]);
+  const phaseTarget = phaseSequence[phase].duration;
+  const totalPhases = phaseSequence.length;
 
   useEffect(() => {
-    if (
-      phase.sessionPhase === SESSION_PHASE.MAIN &&
-      phaseTarget - timeElapsed === 10 &&
-      phase.mainPhase === MAIN_PHASE.RUN
-    ) {
-      const EndAudio = new Audio("/runPhaseEnding.mp3");
-      EndAudio.play();
-    }
-    if (
-      phaseTarget - timeElapsed === 3 &&
-      ((phase.sessionPhase === SESSION_PHASE.MAIN &&
-        phase.mainPhase === MAIN_PHASE.REST) ||
-        phase.sessionPhase === SESSION_PHASE.WARM_UP)
-    ) {
-      const StartAudio = new Audio("/runPhaseStarting.mp3");
-      StartAudio.play();
-    }
     if (timeElapsed == phaseTarget) {
-      const nextPhase = getNextPhase({ phase, session });
-      if (nextPhase.sessionPhase === SESSION_PHASE.COMPLETE) {
+      if (phase === totalPhases - 1) {
+        setIsComplete(true);
         pause();
+      } else {
+        setPhase((prev) => prev + 1);
+        reset();
       }
-      reset();
-      setPhase(nextPhase);
     }
-  }, [timeElapsed, phase, phaseTarget, pause, reset, session]);
+  }, [timeElapsed, phase, phaseTarget, totalPhases, pause, reset]);
 
-  return { phase, timeElapsed, play, pause, phaseTarget, isPaused };
+  return {
+    phase: {
+      type: phaseSequence[phase].phase,
+      count: phase + 1,
+    },
+    totalPhases,
+    timeElapsed,
+    phaseTarget,
+    play,
+    pause,
+    isPaused,
+    isComplete,
+  };
 };
