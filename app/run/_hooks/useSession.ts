@@ -28,7 +28,7 @@ export const useSession = ({ session }: { session: Session }) => {
 
   return {
     phase: {
-      type: phaseSequence[phase].phase,
+      speed: phaseSequence[phase].speed,
       count: phase + 1,
     },
     totalPhases,

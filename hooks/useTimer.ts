@@ -10,7 +10,7 @@ export const useTimer = () => {
     if (!isPaused) {
       intervalRef.current = setInterval(() => {
         setTimeElapsed((time) => time + 1);
-      }, 10);
+      }, 1000);
     }
     return () => {
       clearInterval(intervalRef.current);

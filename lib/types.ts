@@ -1,7 +1,7 @@
-import { Phase } from "./constants";
+import { BPM } from "./constants";
 
 export type PhaseBlock = {
-  phase: Phase;
+  speed: BPM;
   duration: number;
 };
 

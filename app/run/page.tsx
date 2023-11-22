@@ -5,23 +5,23 @@ import { useSession } from "./_hooks/useSession";
 import Progress from "./_components/Progress";
 import Controls from "./_components/Controls";
 import { Session } from "@/lib/types";
-import { Phase } from "@/lib/constants";
+import { BPM } from "@/lib/constants";
 
 const MOCK_SESSION: Session = {
   name: "Mock Session",
   blocks: [
-    { phase: Phase.WALK, duration: 300 },
+    { speed: BPM.LEVEL_3, duration: 300 },
     {
       phases: [
-        { phase: Phase.RUN, duration: 300 },
-        { phase: Phase.WALK, duration: 180 },
+        { speed: BPM.LEVEL_5, duration: 300 },
+        { speed: BPM.LEVEL_3, duration: 180 },
       ],
       repeater: 3,
     },
     {
       phases: [
-        { phase: Phase.RUN, duration: 120 },
-        { phase: Phase.WALK, duration: 120 },
+        { speed: BPM.LEVEL_6, duration: 120 },
+        { speed: BPM.LEVEL_3, duration: 120 },
       ],
       repeater: 2,
     },
