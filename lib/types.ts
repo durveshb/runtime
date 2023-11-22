@@ -10,7 +10,7 @@ export type CompoundBlock = {
   repeater: number;
 };
 
-export type Session = {
+export type Runtime = {
   name: string;
   blocks: (PhaseBlock | CompoundBlock)[];
 };

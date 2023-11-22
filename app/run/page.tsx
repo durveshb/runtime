@@ -4,10 +4,10 @@ import React from "react";
 import { useSession } from "./_hooks/useSession";
 import Progress from "./_components/Progress";
 import Controls from "./_components/Controls";
-import { Session } from "@/lib/types";
+import { Runtime } from "@/lib/types";
 import { BPM } from "@/lib/constants";
 
-const MOCK_SESSION: Session = {
+const MOCK_SESSION: Runtime = {
   name: "Mock Session",
   blocks: [
     { speed: BPM.LEVEL_3, duration: 300 },

@@ -1,9 +1,9 @@
 import { useTimer } from "@/hooks/useTimer";
-import { Session } from "@/lib/types";
+import { Runtime } from "@/lib/types";
 import { getPhaseSequence } from "@/lib/utils/session";
 import { useEffect, useMemo, useState } from "react";
 
-export const useSession = ({ session }: { session: Session }) => {
+export const useSession = ({ session }: { session: Runtime }) => {
   const [phase, setPhase] = useState<number>(0);
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const { timeElapsed, play, pause, reset, isPaused } = useTimer();

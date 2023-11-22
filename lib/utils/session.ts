@@ -1,9 +1,9 @@
-import { CompoundBlock, PhaseBlock, Session } from "../types";
+import { CompoundBlock, PhaseBlock, Runtime } from "../types";
 
 export const getPhaseSequence = ({
   session,
 }: {
-  session: Session;
+  session: Runtime;
 }): PhaseBlock[] => {
   const { blocks } = session;
   return blocks.reduce((acc, block) => {
