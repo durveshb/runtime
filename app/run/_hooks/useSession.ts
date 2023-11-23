@@ -29,8 +29,13 @@ export const useSession = ({ session }: { session: Runtime }) => {
     () => new Audio("/startingNextPhase.mp3"),
     []
   );
+  const halfwayAudio = useMemo(() => new Audio("/halfwaythere.mp3"), []);
 
   useEffect(() => {
+    if (timeElapsed * 2 === phaseTarget) {
+      halfwayAudio.volume = 1;
+      halfwayAudio.play();
+    }
     if (phaseTarget - timeElapsed === 5) {
       startingNextPhase.volume = 1;
       startingNextPhase.play();
@@ -65,6 +70,8 @@ export const useSession = ({ session }: { session: Runtime }) => {
     playTimer();
     startingNextPhase.volume = 0;
     startingNextPhase.play();
+    halfwayAudio.volume = 0;
+    halfwayAudio.play();
   }, [playMetronome, playTimer]);
 
   return {
