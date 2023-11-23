@@ -29,7 +29,7 @@ const CounterWithButtons = ({
       >
         <MinusCircle />
       </Button>
-      <div className="grow">{children}</div>
+      <div className="grow cursor-default select-none	">{children}</div>
       <Button
         variant="ghost"
         size="icon"

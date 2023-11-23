@@ -7,6 +7,7 @@ import { useCallback, useState } from "react";
 const InitialState = [
   { id: uuidv4(), level: BPM.LEVEL_2, duration: 300 },
   {
+    id: uuidv4(),
     phases: [
       { id: uuidv4(), level: BPM.LEVEL_5, duration: 300 },
       { id: uuidv4(), level: BPM.LEVEL_2, duration: 180 },
