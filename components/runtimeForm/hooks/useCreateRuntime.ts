@@ -4,10 +4,16 @@ import { BPM } from "@/lib/constants";
 import { CompoundPhaseWithId, PhaseWithId } from "@/lib/types";
 import { useCallback, useState } from "react";
 
-const InitialState = [{ id: uuidv4(), level: BPM.LEVEL_1, duration: 30 }] as (
-  | PhaseWithId
-  | CompoundPhaseWithId
-)[];
+const InitialState = [
+  { id: uuidv4(), level: BPM.LEVEL_2, duration: 300 },
+  {
+    phases: [
+      { id: uuidv4(), level: BPM.LEVEL_5, duration: 300 },
+      { id: uuidv4(), level: BPM.LEVEL_2, duration: 180 },
+    ],
+    repeater: 4,
+  },
+] as (PhaseWithId | CompoundPhaseWithId)[];
 
 export const useCreateRuntime = (): {
   runtime: (PhaseWithId | CompoundPhaseWithId)[];
