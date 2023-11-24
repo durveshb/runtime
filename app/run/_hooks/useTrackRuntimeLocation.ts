@@ -31,6 +31,9 @@ export const useTrackRuntimeLocation = () => {
           maximumAge: 5000,
         }
       );
+    } else {
+      // To direct user to accept location permissions
+      navigator.geolocation.getCurrentPosition(() => {});
     }
 
     return () => {
