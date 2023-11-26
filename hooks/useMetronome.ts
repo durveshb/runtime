@@ -1,30 +1,24 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { BPM } from "@/lib/constants";
+import { useCallback, useEffect, useRef } from "react";
 
-export const useMetronome = ({ bpm }: { bpm: number }) => {
-  const click1 = useMemo(() => new Audio("/click1.mp3"), []);
-
-  const [isPlaying, setIsPlaying] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout>();
+export const useMetronome = ({ bpm }: { bpm: BPM }) => {
+  const audioRef = useRef<HTMLAudioElement>();
 
   useEffect(() => {
-    if (isPlaying) {
-      timerRef.current = setInterval(() => {
-        click1.currentTime = 0;
-        click1.play();
-      }, (60 / bpm) * 1000);
-    }
-    return () => {
-      clearInterval(timerRef.current);
-    };
-  }, [isPlaying, bpm]);
+    audioRef.current = new Audio(`/audio/bpm/${bpm}.mp3`);
+  }, [bpm]);
 
   const play = useCallback(() => {
-    click1.play();
-    setIsPlaying(true);
+    if (audioRef.current) {
+      audioRef.current.loop = true;
+      audioRef.current.play();
+    }
   }, []);
 
   const pause = useCallback(() => {
-    setIsPlaying(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
   }, []);
 
   return {

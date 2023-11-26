@@ -26,10 +26,10 @@ export const useSession = ({ session }: { session: Runtime }) => {
   });
 
   const startingNextPhase = useMemo(
-    () => new Audio("/startingNextPhase.mp3"),
+    () => new Audio("audio/startingNextPhase.mp3"),
     []
   );
-  const halfwayAudio = useMemo(() => new Audio("/halfwaythere.mp3"), []);
+  const halfwayAudio = useMemo(() => new Audio("audio/halfwaythere.mp3"), []);
 
   useEffect(() => {
     if (timeElapsed * 2 === phaseTarget) {
