@@ -33,11 +33,11 @@ export const useSession = ({ session }: { session: Runtime }) => {
 
   useEffect(() => {
     if (timeElapsed * 2 === phaseTarget) {
-      halfwayAudio.volume = 1;
+      halfwayAudio.muted = false;
       halfwayAudio.play();
     }
     if (phaseTarget - timeElapsed === 5) {
-      startingNextPhase.volume = 1;
+      startingNextPhase.muted = false;
       startingNextPhase.play();
     }
     if (timeElapsed == phaseTarget) {
@@ -68,9 +68,9 @@ export const useSession = ({ session }: { session: Runtime }) => {
   const play = useCallback(() => {
     playMetronome();
     playTimer();
-    startingNextPhase.volume = 0;
+    startingNextPhase.muted = true;
+    halfwayAudio.muted = true;
     startingNextPhase.play();
-    halfwayAudio.volume = 0;
     halfwayAudio.play();
   }, [playMetronome, playTimer]);
 
